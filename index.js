@@ -9,7 +9,7 @@ var async = require('async'),
     articleQueue,
     searchQueue,
     retried = {},
-    SEARCH_URL = process.env.SEARCH_URL;
+    AUTHOR = process.env.AUTHOR;
 
 function scrapeSearch(uri, callback) {
     console.log('Loading: ' + uri);
@@ -107,4 +107,4 @@ searchQueue = async.queue(scrapeSearch);
 
 articleQueue = async.queue(downloadArticle, process.env.QUEUE_SIZE || 1);
 
-searchQueue.push(SEARCH_URL);
+searchQueue.push('http://www.computerworld.co.nz/author/334791916/' + AUTHOR + '/articles');
